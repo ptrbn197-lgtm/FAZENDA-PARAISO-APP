@@ -1,0 +1,68 @@
+# Dependencies
+node_modules
+.pnp
+.pnp.js
+
+# Testing
+coverage
+
+# Next.js
+.next/
+out/
+build
+dist
+
+# Production
+/out
+/build
+/dist
+
+# Misc
+.DS_Store
+*.pem
+.env
+.env.local
+.env.production.local
+.env.development.local
+.env.test.local
+
+# Debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# IDEs
+.idea
+.vscode
+*.swp
+*.swo
+*~
+
+# Tauri
+src-tauri/target
+src-tauri/Cargo.lock
+
+# Android
+android/.gradle
+android/.idea
+android/build
+android/app/build
+android/local.properties
+*.apk
+*.aab
+
+# Capacitor
+ios/
+.capacitor
+
+# Downloads (generated files)
+public/downloads/*.apk
+public/downloads/*.exe
+public/downloads/*.dmg
+public/downloads/*.AppImage
+public/downloads/*.msi
+public/downloads/*.deb
+public/downloads/*.rpm
+
+# Keep placeholder files
+!public/downloads/.gitkeep

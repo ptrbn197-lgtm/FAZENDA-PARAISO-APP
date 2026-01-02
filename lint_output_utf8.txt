@@ -1,0 +1,4 @@
+﻿
+> seringal-fazenda-paraiso@1.0.0 lint
+> eslint .
+

@@ -1,0 +1,94 @@
+﻿
+> seringal-fazenda-paraiso@1.0.0 apk:debug
+> npm run build:android && cd android && gradlew assembleDebug && cd ..
+
+
+> seringal-fazenda-paraiso@1.0.0 build:android
+> npm run build && npx cap sync android
+
+
+> seringal-fazenda-paraiso@1.0.0 build
+> next build
+
+   Ôû▓ Next.js 15.1.4
+   - Environments: .env.local
+
+   Creating an optimized production build ...
+ Ô£ô Compiled successfully
+   Skipping validation of types
+   Skipping linting
+   Collecting page data ...
+   Generating static pages (0/4) ...
+   Generating static pages (1/4) 
+   Generating static pages (2/4) 
+   Generating static pages (3/4) 
+ Ô£ô Generating static pages (4/4)
+   Finalizing page optimization ...
+   Collecting build traces ...
+   Exporting (0/3) ...
+ Ô£ô Exporting (3/3)
+
+Route (app)                              Size     First Load JS
+Ôöî Ôùï /                                    144 kB          300 kB
+Ôöö Ôùï /_not-found                          979 B           106 kB
++ First Load JS shared by all            106 kB
+  Ôö£ chunks/4bd1b696-a6849b8dea7f7b2e.js  52.9 kB
+  Ôö£ chunks/517-97a5a2d790b3d42c.js       50.6 kB
+  Ôöö other shared chunks (total)          1.99 kB
+
+
+Ôùï  (Static)  prerendered as static content
+
+ÔêÜ Copying web assets from out to android\app\src\main\assets\public in 134.82ms
+ÔêÜ Creating capacitor.config.json in android\app\src\main\assets in 2.47ms
+ÔêÜ copy android in 195.32ms
+ÔêÜ Updating Android plugins in 13.61ms
+[info] Found 3 Capacitor plugins for android:
+       @capacitor/app@6.0.3
+       @capacitor/splash-screen@6.0.4
+       @capacitor/status-bar@6.0.3
+ÔêÜ update android in 99.11ms
+[info] Sync finished in 0.356s
+
+> Configure project :app
+WARNING: The option setting 'android.defaults.buildfeatures.buildconfig=true' is deprecated.
+The current default is 'false'.
+It will be removed in version 9.0 of the Android Gradle plugin.
+You can resolve this warning in Android Studio via `Refactor` > `Migrate BuildConfig to Gradle Build Files`
+WARNING: Using flatDir should be avoided because it doesn't support any meta-data formats.
+
+> Task :app:preBuild UP-TO-DATE
+> Task :app:preDebugBuild UP-TO-DATE
+> Task :app:mergeDebugNativeDebugMetadata NO-SOURCE
+> Task :app:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :app:dataBindingMergeDependencyArtifactsDebug UP-TO-DATE
+> Task :app:generateDebugResValues UP-TO-DATE
+> Task :app:generateDebugResources UP-TO-DATE
+> Task :capacitor-android:preBuild UP-TO-DATE
+> Task :capacitor-android:preDebugBuild UP-TO-DATE
+> Task :capacitor-android:generateDebugResValues UP-TO-DATE
+> Task :capacitor-android:generateDebugResources UP-TO-DATE
+> Task :capacitor-android:packageDebugResources UP-TO-DATE
+> Task :capacitor-app:preBuild UP-TO-DATE
+> Task :capacitor-app:preDebugBuild UP-TO-DATE
+> Task :capacitor-app:generateDebugResValues UP-TO-DATE
+> Task :capacitor-app:generateDebugResources UP-TO-DATE
+> Task :capacitor-app:packageDebugResources UP-TO-DATE
+> Task :capacitor-splash-screen:preBuild UP-TO-DATE
+> Task :capacitor-splash-screen:preDebugBuild UP-TO-DATE
+> Task :capacitor-splash-screen:generateDebugResValues UP-TO-DATE
+> Task :capacitor-splash-screen:generateDebugResources UP-TO-DATE
+> Task :capacitor-splash-screen:packageDebugResources UP-TO-DATE
+> Task :capacitor-status-bar:preBuild UP-TO-DATE
+> Task :capacitor-status-bar:preDebugBuild UP-TO-DATE
+> Task :capacitor-status-bar:generateDebugResValues UP-TO-DATE
+> Task :capacitor-status-bar:generateDebugResources UP-TO-DATE
+> Task :capacitor-status-bar:packageDebugResources UP-TO-DATE
+> Task :app:mergeDebugResources FAILED
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.6/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+11 actionable tasks: 1 executed, 10 up-to-date

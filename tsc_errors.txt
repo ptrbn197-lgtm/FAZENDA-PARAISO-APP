@@ -1,0 +1,18 @@
+﻿error TS2688: Cannot find type definition file for 'babel__generator'.
+  The file is in the program because:
+    Entry point for implicit type library 'babel__generator'
+error TS2688: Cannot find type definition file for 'babel__template'.
+  The file is in the program because:
+    Entry point for implicit type library 'babel__template'
+error TS2688: Cannot find type definition file for 'd3-color'.
+  The file is in the program because:
+    Entry point for implicit type library 'd3-color'
+error TS2688: Cannot find type definition file for 'd3-path'.
+  The file is in the program because:
+    Entry point for implicit type library 'd3-path'
+error TS2688: Cannot find type definition file for 'istanbul-lib-report'.
+  The file is in the program because:
+    Entry point for implicit type library 'istanbul-lib-report'
+error TS2688: Cannot find type definition file for 'yargs-parser'.
+  The file is in the program because:
+    Entry point for implicit type library 'yargs-parser'

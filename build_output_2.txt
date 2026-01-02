@@ -1,0 +1,33 @@
+﻿
+> seringal-fazenda-paraiso@1.0.0 build
+> next build
+
+   Ôû▓ Next.js 15.1.4
+   - Environments: .env.local
+
+   Creating an optimized production build ...
+ Ô£ô Compiled successfully
+   Skipping validation of types
+   Skipping linting
+   Collecting page data ...
+   Generating static pages (0/4) ...
+   Generating static pages (1/4) 
+   Generating static pages (2/4) 
+   Generating static pages (3/4) 
+ Ô£ô Generating static pages (4/4)
+   Finalizing page optimization ...
+   Collecting build traces ...
+   Exporting (0/3) ...
+ Ô£ô Exporting (3/3)
+
+Route (app)                              Size     First Load JS
+Ôöî Ôùï /                                    144 kB          300 kB
+Ôöö Ôùï /_not-found                          979 B           106 kB
++ First Load JS shared by all            106 kB
+  Ôö£ chunks/4bd1b696-a6849b8dea7f7b2e.js  52.9 kB
+  Ôö£ chunks/517-97a5a2d790b3d42c.js       50.6 kB
+  Ôöö other shared chunks (total)          1.99 kB
+
+
+Ôùï  (Static)  prerendered as static content
+

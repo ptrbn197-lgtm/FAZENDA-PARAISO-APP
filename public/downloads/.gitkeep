@@ -1,0 +1,3 @@
+# Este arquivo mantém o diretório downloads no Git
+# Os arquivos de instalação serão gerados aqui após os builds
+# Coloque o arquivo gestao-seringal.apk aqui após gerar o build com: npm run build:apk
