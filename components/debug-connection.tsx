@@ -14,22 +14,21 @@ export function DebugConnection() {
             const start = Date.now()
 
             // 1. Verificar configuração carregada
-            const currentUrl = supabase['supabaseUrl'] as string
-            const currentKey = supabase['supabaseKey'] as string
+            const currentUrl = (supabase as any).supabaseUrl || process.env.NEXT_PUBLIC_SUPABASE_URL
+            const currentKey = (supabase as any).supabaseKey || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 
-            if (!currentUrl || !currentUrl.includes('qxhrilukcdwqgetcjyva')) {
-                throw new Error(`URL incorreta carregada: ${currentUrl}`)
+            if (!currentUrl) {
+                throw new Error('A URL do Supabase está vazia. Verifique as variáveis de ambiente (dashboard do Vercel ou .env.local).')
             }
 
-            // 2. Teste de Sessão (Simples)
+            // 2. Teste de Sessão
             const { data, error } = await supabase.auth.getSession()
 
             const time = Date.now() - start
 
             if (error) {
-                // Se for erro de chave, vamos ser bem específicos
-                if (error.message.includes('Invalid API key')) {
-                    throw new Error('A Chave API ("anon key") foi rejeitada pelo Supabase. Ela pode ter sido revogada ou não pertence a este projeto.')
+                if (error.message.includes('Invalid API key') || error.message.includes('apiKey')) {
+                    throw new Error('A Chave API (anon key) parece inválida ou não foi carregada. Verifique se copiou a chave "anon public" corretamente.')
                 }
                 throw error
             }
@@ -38,15 +37,20 @@ export function DebugConnection() {
             setMessage(`Conectado! Latência: ${time}ms`)
             setDetails({
                 test: 'auth.getSession',
-                url_check: 'OK',
+                url_present: !!currentUrl,
+                url_masked: currentUrl.replace(/(https:\/\/).*(.supabase.co)/, "$1***$2"),
                 session: data.session ? 'Ativa' : 'Nenhuma',
-                data
+                user: data.session?.user?.email || 'Deslogado',
             })
         } catch (err: any) {
             console.error("Debug connection error:", err)
             setStatus('error')
             setMessage(err.message || 'Erro desconhecido')
-            setDetails(err)
+            setDetails({
+                error: err.message,
+                hint: "Verifique se você configurou NEXT_PUBLIC_SUPABASE_URL e NEXT_PUBLIC_SUPABASE_ANON_KEY no Vercel.",
+                stack: err.stack
+            })
         }
     }
 
