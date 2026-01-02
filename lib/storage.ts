@@ -22,6 +22,7 @@ function dispatchStorageUpdate() {
   if (typeof window !== "undefined") {
     // Notify components to re-fetch data
     window.dispatchEvent(new Event("dataUpdated"))
+    window.dispatchEvent(new Event("storage-update"))
   }
 }
 

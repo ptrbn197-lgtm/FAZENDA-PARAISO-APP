@@ -10,6 +10,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { useToast } from "@/components/ui/use-toast"
 import {
   Dialog,
   DialogContent,
@@ -25,6 +26,7 @@ import type { StimulationRecord } from "@/lib/types"
 
 export function StimulationCalendar() {
   const { user } = useAuth()
+  const { toast } = useToast()
   const [records, setRecords] = useState<StimulationRecord[]>([])
   const [isDialogOpen, setIsDialogOpen] = useState(false)
   const [currentMonth, setCurrentMonth] = useState<Date>(new Date())
@@ -60,34 +62,62 @@ export function StimulationCalendar() {
     }
 
     window.addEventListener("dataUpdated", handleDataUpdate)
-    return () => window.removeEventListener("dataUpdated", handleDataUpdate)
+    window.addEventListener("storage-update", handleDataUpdate)
+    return () => {
+      window.removeEventListener("dataUpdated", handleDataUpdate)
+      window.removeEventListener("storage-update", handleDataUpdate)
+    }
   }, [])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
 
-    const record: StimulationRecord = {
-      id: `stim-${Date.now()}`,
-      taskSection: formData.taskSection,
-      workerName: formData.workerName,
-      workerId: formData.workerId,
-      applicationDate: formData.applicationDate,
-      notes: formData.notes,
-      registeredBy: user?.id || "",
-      registeredByName: user?.name || "",
-      createdAt: new Date().toISOString(),
+    if (!user) {
+      toast({
+        title: "Erro de autenticação",
+        description: "Você precisa estar logado para registrar uma aplicação.",
+        variant: "destructive",
+      })
+      return
     }
 
-    await addStimulationRecord(record)
-    loadRecords()
-    setIsDialogOpen(false)
-    setFormData({
-      workerName: "",
-      workerId: "",
-      taskSection: "",
-      applicationDate: new Date().toISOString().split("T")[0],
-      notes: "",
-    })
+    try {
+      const record: StimulationRecord = {
+        id: `stim-${Date.now()}`,
+        taskSection: formData.taskSection,
+        workerName: formData.workerName,
+        workerId: formData.workerId,
+        applicationDate: formData.applicationDate,
+        notes: formData.notes,
+        registeredBy: user.id,
+        registeredByName: user.name,
+        createdAt: new Date().toISOString(),
+      }
+
+      await addStimulationRecord(record)
+
+      toast({
+        title: "Sucesso!",
+        description: "Aplicação de Ethrel registrada com sucesso.",
+      })
+
+      loadRecords()
+      setIsDialogOpen(false)
+      setFormData({
+        workerName: "",
+        workerId: "",
+        taskSection: "",
+        applicationDate: new Date().toISOString().split("T")[0],
+        notes: "",
+      })
+    } catch (error) {
+      console.error("Error submitting stimulation record:", error)
+      toast({
+        title: "Erro ao registrar",
+        description: "Ocorreu um erro ao salvar os dados. Verifique sua conexão.",
+        variant: "destructive",
+      })
+    }
   }
 
   const handleDelete = async (recordId: string) => {
