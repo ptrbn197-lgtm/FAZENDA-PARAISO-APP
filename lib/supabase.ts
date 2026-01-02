@@ -1,11 +1,12 @@
 import { createClient } from '@supabase/supabase-js'
 
-// GERADO AUTOMATICAMENTE - NÃO EDITAR MANUALMENTE
-const supabaseUrl = 'https://qxhrilukcdwgetcjyva.supabase.co'
-const supabaseAnonKey = 'sb_publichable_ripN4b7oskCHgkScEZe1g_mHrEi7Tf'
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || ''
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ''
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey)
 
-if (!supabaseAnonKey) {
-    console.warn("⚠️ Supabase Anon Key is missing!")
+if (!supabaseUrl || !supabaseAnonKey) {
+    if (typeof window !== 'undefined') {
+        console.warn("⚠️ Supabase configuration is missing! Ensure NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY are set.")
+    }
 }
